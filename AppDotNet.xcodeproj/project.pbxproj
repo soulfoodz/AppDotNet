@@ -21,6 +21,7 @@
 		5211683417FF79CA006D96E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5211681617FF79CA006D96E7 /* UIKit.framework */; };
 		5211683C17FF79CA006D96E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5211683A17FF79CA006D96E7 /* InfoPlist.strings */; };
 		5211683E17FF79CA006D96E7 /* AppDotNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211683D17FF79CA006D96E7 /* AppDotNetTests.m */; };
+		5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		5211683917FF79CA006D96E7 /* AppDotNetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppDotNetTests-Info.plist"; sourceTree = "<group>"; };
 		5211683B17FF79CA006D96E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5211683D17FF79CA006D96E7 /* AppDotNetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDotNetTests.m; sourceTree = "<group>"; };
+		5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUserPostsViewController.h; sourceTree = "<group>"; };
+		5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUserPostsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +115,13 @@
 		5211681817FF79CA006D96E7 /* AppDotNet */ = {
 			isa = PBXGroup;
 			children = (
-				5211682117FF79CA006D96E7 /* AppDelegate.h */,
-				5211682217FF79CA006D96E7 /* AppDelegate.m */,
 				5211682417FF79CA006D96E7 /* Main.storyboard */,
+				5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */,
+				5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */,
 				5211682717FF79CA006D96E7 /* ViewController.h */,
 				5211682817FF79CA006D96E7 /* ViewController.m */,
 				5211682A17FF79CA006D96E7 /* Images.xcassets */,
+				5211684A17FF8ECE006D96E7 /* App Delegate */,
 				5211681917FF79CA006D96E7 /* Supporting Files */,
 			);
 			path = AppDotNet;
@@ -150,6 +154,15 @@
 				5211683A17FF79CA006D96E7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5211684A17FF8ECE006D96E7 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				5211682117FF79CA006D96E7 /* AppDelegate.h */,
+				5211682217FF79CA006D96E7 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +264,7 @@
 			files = (
 				5211682917FF79CA006D96E7 /* ViewController.m in Sources */,
 				5211682317FF79CA006D96E7 /* AppDelegate.m in Sources */,
+				5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */,
 				5211681F17FF79CA006D96E7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
