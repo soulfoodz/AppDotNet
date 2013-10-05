@@ -11,5 +11,15 @@
 @interface ViewController : UIViewController <UITableViewDataSource, UITabBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) NSMutableArray *userArray;
+@property (strong, nonatomic) NSMutableArray *allPostsArray;
+@property (strong, nonatomic) NSMutableArray *postsArray;
+
+
+- (IBAction)refreshButton:(id)sender;
+
+
+
 
 @end

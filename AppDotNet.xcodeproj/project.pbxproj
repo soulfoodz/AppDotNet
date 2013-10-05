@@ -22,6 +22,7 @@
 		5211683C17FF79CA006D96E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5211683A17FF79CA006D96E7 /* InfoPlist.strings */; };
 		5211683E17FF79CA006D96E7 /* AppDotNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211683D17FF79CA006D96E7 /* AppDotNetTests.m */; };
 		5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */; };
+		5211684C17FF9DDF006D96E7 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 5211684B17FF9DDF006D96E7 /* person.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		5211683D17FF79CA006D96E7 /* AppDotNetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDotNetTests.m; sourceTree = "<group>"; };
 		5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUserPostsViewController.h; sourceTree = "<group>"; };
 		5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUserPostsViewController.m; sourceTree = "<group>"; };
+		5211684B17FF9DDF006D96E7 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		5211681917FF79CA006D96E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5211684D17FF9DE5006D96E7 /* Images */,
 				5211681A17FF79CA006D96E7 /* AppDotNet-Info.plist */,
 				5211681B17FF79CA006D96E7 /* InfoPlist.strings */,
 				5211681E17FF79CA006D96E7 /* main.m */,
@@ -163,6 +166,14 @@
 				5211682217FF79CA006D96E7 /* AppDelegate.m */,
 			);
 			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		5211684D17FF9DE5006D96E7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5211684B17FF9DDF006D96E7 /* person.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5211684C17FF9DDF006D96E7 /* person.png in Resources */,
 				5211682B17FF79CA006D96E7 /* Images.xcassets in Resources */,
 				5211681D17FF79CA006D96E7 /* InfoPlist.strings in Resources */,
 				5211682617FF79CA006D96E7 /* Main.storyboard in Resources */,
