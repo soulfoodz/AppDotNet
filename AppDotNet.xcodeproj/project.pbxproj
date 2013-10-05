@@ -23,6 +23,7 @@
 		5211683E17FF79CA006D96E7 /* AppDotNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211683D17FF79CA006D96E7 /* AppDotNetTests.m */; };
 		5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */; };
 		5211684C17FF9DDF006D96E7 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 5211684B17FF9DDF006D96E7 /* person.png */; };
+		5211685318009FDA006D96E7 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211685218009FDA006D96E7 /* TweetCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUserPostsViewController.h; sourceTree = "<group>"; };
 		5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUserPostsViewController.m; sourceTree = "<group>"; };
 		5211684B17FF9DDF006D96E7 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
+		5211685118009FDA006D96E7 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		5211685218009FDA006D96E7 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 		5211681817FF79CA006D96E7 /* AppDotNet */ = {
 			isa = PBXGroup;
 			children = (
+				5211685118009FDA006D96E7 /* TweetCell.h */,
+				5211685218009FDA006D96E7 /* TweetCell.m */,
 				5211682417FF79CA006D96E7 /* Main.storyboard */,
 				5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */,
 				5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */,
@@ -277,6 +282,7 @@
 				5211682917FF79CA006D96E7 /* ViewController.m in Sources */,
 				5211682317FF79CA006D96E7 /* AppDelegate.m in Sources */,
 				5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */,
+				5211685318009FDA006D96E7 /* TweetCell.m in Sources */,
 				5211681F17FF79CA006D96E7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

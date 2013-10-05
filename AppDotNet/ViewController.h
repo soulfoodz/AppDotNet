@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TweetCell.h"
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITabBarDelegate>
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -16,10 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *allPostsArray;
 @property (strong, nonatomic) NSMutableArray *postsArray;
 
-
-- (IBAction)refreshButton:(id)sender;
-
-
+- (IBAction)refreshFeed:(id)sender;
 
 
 @end

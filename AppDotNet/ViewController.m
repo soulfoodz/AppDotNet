@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TweetCell.h"
 
 @interface ViewController ()
 
@@ -21,10 +22,12 @@
     self.allPostsArray = [NSMutableArray new];
     self.postsArray    = [NSMutableArray new];
     self.userArray     = [NSMutableArray new];
+    
+    [self refreshFeed:self];
 }
 
 
-- (IBAction)refreshButton:(id)sender
+- (IBAction)refreshFeed:(id)sender
 {
     NSURL        *url;
     NSURLRequest *request;
@@ -73,22 +76,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    TweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
-    cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostsCell"];
+    cell.usernameLabel.text = [self.userArray[indexPath.row] objectForKey:@"username"];
+    cell.tweetLabel.text    = self.postsArray[indexPath.row];
+    cell.imageView.image    = [self fetchUsersAvatarImage:indexPath];
     
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                             reuseIdentifier:@"PostsCell"];
-    
-    cell.textLabel.text       = [NSString stringWithFormat:@"@%@", [self.userArray[indexPath.row] objectForKey:@"username"]];
-    cell.detailTextLabel.text = [self.userArray[indexPath.row] objectForKey:@"name"];
-    
-    cell.imageView.frame = CGRectMake(0, 4, 36, 36);
-    cell.imageView.image = [self fetchUsersAvatarImage:indexPath];
-    
-    NSLog(@"cell text : %@", cell.textLabel.text);
+    NSLog(@"cell text : %@", cell.tweetLabel.text);
     return cell;
 }
+
 
 
 - (UIImage *)fetchUsersAvatarImage:(NSIndexPath *)indexPath
@@ -103,6 +100,7 @@
     
     return avatarImage;
 }
+
 
 
 
