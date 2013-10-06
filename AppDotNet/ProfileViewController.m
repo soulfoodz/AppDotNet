@@ -7,6 +7,8 @@
 //
 
 #import "ProfileViewController.h"
+#import "FollowTableViewController.h"
+#import "TweetCell.h"
 
 @interface ProfileViewController ()
 {
@@ -41,18 +43,24 @@
     
     tableViewIsUp = NO;
     
+    UINib *nib;
+    
+    nib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
+    
+    [[self tableView] registerNib:nib
+           forCellReuseIdentifier:@"tweetCell"];
+
+    
     [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
     
     self.tapUp   = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
     [self.tableView addGestureRecognizer:self.tapUp];
-
-
     
     NSURL        *url;
     NSURLRequest *request;
     NSString     *urlString;
     
-    if (!self.userID) self.userID = @"59872";
+    if (!self.userID) self.userID = @"@mashable";
     
     // Begin call to url
     urlString = [NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/users/%@", self.userID];
@@ -80,6 +88,20 @@
          usernameString          = [NSString stringWithFormat:@"@%@", [self.userInfoDict objectForKey:@"username"]];
          self.userNameLabel.text = usernameString;
          self.nameLabel.text     = [self.userInfoDict objectForKey:@"name"];
+         
+         self.navigationItem.title = self.userNameLabel.text;
+         
+         NSNumber *num = [[self.userInfoDict objectForKey:@"counts"] objectForKey:@"followers"];
+         
+         NSLog(@"%@", num);
+         
+         // Followers and Following labels
+         id followers = [[self.userInfoDict objectForKey:@"counts"] objectForKey:@"followers"];
+         self.followersLabel.text = [NSString stringWithFormat:@"%@", followers];
+         
+         id following = [[self.userInfoDict objectForKey:@"counts"] objectForKey:@"following"];
+         self.followingLabel.text = [NSString stringWithFormat:@"%@", following];
+
 
          // Fetch and set the user image
          self.userImage = [self fetchUsersAvatarImage];
@@ -91,7 +113,7 @@
          // Fetch and set the user description
          description               = [[self.userInfoDict objectForKey:@"description"] objectForKey:@"text"];
          self.userDescription.text = description;
-         self.userDescription.textAlignment = NSTextAlignmentCenter;
+         self.userDescription.textAlignment = NSTextAlignmentLeft;
          
          // Fetch recent tweets
          [self fetchUsersRecentTweets];
@@ -167,7 +189,7 @@
     
     imageURLString  = [[self.userInfoDict objectForKey:@"cover_image"] objectForKey:@"url"];
     url             = [NSURL URLWithString:imageURLString];
-    backgroundImage     = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+    backgroundImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
     
     return backgroundImage;
 }
@@ -217,31 +239,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
+    TweetCell *cell;
+    NSString  *userNameString;
     
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                             reuseIdentifier:@"cell"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
     
-    cell.textLabel.text = [self.userInfoDict objectForKey:@"username"];
+    userNameString = [NSString stringWithFormat:@"@%@", [self.userInfoDict objectForKey:@"username"]];
     
-    cell.detailTextLabel.text          = [self.userTweetsArray[indexPath.row] objectForKey:@"text"];
-    cell.detailTextLabel.font          = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0f];
-    cell.detailTextLabel.numberOfLines = 3;
-    cell.detailTextLabel.LineBreakMode = NSLineBreakByWordWrapping;
-    
-    CGRect imageFrame = CGRectMake(10, 10, 36, 36);
-    cell.imageView.frame = imageFrame;
-    cell.imageView.image = self.userImage;
-    
-    NSLog(@"cell text : %@", cell.detailTextLabel.text);
-    
+    cell.userNameLabel.text     = userNameString;
+    cell.nameLabel.text         = [self.userInfoDict objectForKey:@"name"];
+    cell.tweetLabel.text        = [self.userTweetsArray[indexPath.row] objectForKey:@"text"];
+    cell.avatarImageView.image  = self.userImage;
+
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20.0;
+    return 25.0;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Recent Posts";
 }
 
 
@@ -256,7 +278,7 @@
                         options:UIViewAnimationOptionCurveLinear
                      animations:^()
         {
-            CGRect scrollFrame = CGRectMake(0.0f, 232.0f, 320.0f, 348.0f);
+            CGRect scrollFrame = CGRectMake(0.0f, 258.0f, 320.0f, 310.0f);
             self.tableView.frame = scrollFrame;
             self.tableView.scrollEnabled = YES;
             self.tableView.userInteractionEnabled = YES;
@@ -271,7 +293,7 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^()
          {
-             CGRect scrollFrame = CGRectMake(0.0f, 468.0f, 320.0f, 348.0f);
+             CGRect scrollFrame = CGRectMake(0.0f, 468.0f, 320.0f, 100.0f);
              self.tableView.frame = scrollFrame;
              self.tableView.scrollEnabled = NO;
              self.tableView.userInteractionEnabled = YES;
@@ -283,6 +305,23 @@
     }
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    FollowTableViewController *dvc;
+    dvc = segue.destinationViewController;
+    
+    if ([segue.identifier isEqualToString:@"SegueToFollowing"])
+    {
+        
+    }
+    
+    
+    if ([segue.identifier isEqualToString:@"SegueToFollowers"])
+    {
+        
+    }
+}
 
  
 

@@ -16,8 +16,8 @@
 @property (strong, nonatomic) NSString *username;
 
 - (void)refreshFeed:(id)sender;
-- (NSDictionary *)pullUserInfo:(NSString *)string;
-- (NSMutableArray *)pullRecentPostsByUser:(NSString *)user;
+//- (NSDictionary *)pullUserInfo:(NSString *)string;
+//- (NSMutableArray *)pullRecentPostsByUser:(NSString *)user;
 
 
 
