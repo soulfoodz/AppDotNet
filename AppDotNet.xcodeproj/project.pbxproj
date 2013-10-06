@@ -24,6 +24,12 @@
 		5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */; };
 		5211684C17FF9DDF006D96E7 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 5211684B17FF9DDF006D96E7 /* person.png */; };
 		5211685318009FDA006D96E7 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211685218009FDA006D96E7 /* TweetCell.m */; };
+		521168561800E282006D96E7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521168551800E282006D96E7 /* ProfileViewController.m */; };
+		521168591800E30E006D96E7 /* PostStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 521168581800E30E006D96E7 /* PostStore.m */; };
+		5211685F1800EA02006D96E7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211685E1800EA02006D96E7 /* User.m */; };
+		521168611801142D006D96E7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521168601801142D006D96E7 /* CoreImage.framework */; };
+		5211686318011435006D96E7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5211686218011435006D96E7 /* QuartzCore.framework */; };
+		5211686618011499006D96E7 /* BlurOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211686518011499006D96E7 /* BlurOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,16 @@
 		5211684B17FF9DDF006D96E7 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		5211685118009FDA006D96E7 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		5211685218009FDA006D96E7 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		521168541800E282006D96E7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		521168551800E282006D96E7 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		521168571800E30E006D96E7 /* PostStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostStore.h; sourceTree = "<group>"; };
+		521168581800E30E006D96E7 /* PostStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostStore.m; sourceTree = "<group>"; };
+		5211685D1800EA02006D96E7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5211685E1800EA02006D96E7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		521168601801142D006D96E7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		5211686218011435006D96E7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5211686418011499006D96E7 /* BlurOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurOverlay.h; sourceTree = "<group>"; };
+		5211686518011499006D96E7 /* BlurOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurOverlay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5211686318011435006D96E7 /* QuartzCore.framework in Frameworks */,
+				521168611801142D006D96E7 /* CoreImage.framework in Frameworks */,
 				5211681517FF79CA006D96E7 /* CoreGraphics.framework in Frameworks */,
 				5211681717FF79CA006D96E7 /* UIKit.framework in Frameworks */,
 				5211681317FF79CA006D96E7 /* Foundation.framework in Frameworks */,
@@ -109,6 +127,8 @@
 		5211681117FF79CA006D96E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5211686218011435006D96E7 /* QuartzCore.framework */,
+				521168601801142D006D96E7 /* CoreImage.framework */,
 				5211681217FF79CA006D96E7 /* Foundation.framework */,
 				5211681417FF79CA006D96E7 /* CoreGraphics.framework */,
 				5211681617FF79CA006D96E7 /* UIKit.framework */,
@@ -123,6 +143,14 @@
 				5211685118009FDA006D96E7 /* TweetCell.h */,
 				5211685218009FDA006D96E7 /* TweetCell.m */,
 				5211682417FF79CA006D96E7 /* Main.storyboard */,
+				521168571800E30E006D96E7 /* PostStore.h */,
+				521168581800E30E006D96E7 /* PostStore.m */,
+				5211685D1800EA02006D96E7 /* User.h */,
+				5211685E1800EA02006D96E7 /* User.m */,
+				5211686418011499006D96E7 /* BlurOverlay.h */,
+				5211686518011499006D96E7 /* BlurOverlay.m */,
+				521168541800E282006D96E7 /* ProfileViewController.h */,
+				521168551800E282006D96E7 /* ProfileViewController.m */,
 				5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */,
 				5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */,
 				5211682717FF79CA006D96E7 /* ViewController.h */,
@@ -279,10 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5211685F1800EA02006D96E7 /* User.m in Sources */,
+				521168591800E30E006D96E7 /* PostStore.m in Sources */,
 				5211682917FF79CA006D96E7 /* ViewController.m in Sources */,
 				5211682317FF79CA006D96E7 /* AppDelegate.m in Sources */,
 				5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */,
+				5211686618011499006D96E7 /* BlurOverlay.m in Sources */,
 				5211685318009FDA006D96E7 /* TweetCell.m in Sources */,
+				521168561800E282006D96E7 /* ProfileViewController.m in Sources */,
 				5211681F17FF79CA006D96E7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
