@@ -40,7 +40,11 @@
 
 - (IBAction)signInButtonPressed:(id)sender
 {
+    PostStore *postStore;
+    
+    postStore = [PostStore sharedAvatarStore];
     [self.textField resignFirstResponder];
+    [self.delegate setUserIdFromString:self.textField.text withPostStore:postStore];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

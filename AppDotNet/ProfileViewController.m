@@ -29,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
         {
+            [self fetchUserID];
         }
     return self;
 }
@@ -36,39 +37,37 @@
 
 - (void)viewDidLoad
 {
-   if (!self.userID) self.userID = @"@mashable";
-//    {
-//        self.userID = @"@mashable";
-//        [self performSegueWithIdentifier:@"SegueToSignIn" sender:self];
-//    }
-//    else
-//    {
-       // svc = [self.storyboard instantiateViewControllerWithIdentifier:@"SVC"];
-    //
-    
-    PostStore *postStore;
-    
-    [super viewDidLoad];
-    
-    postStore = [PostStore sharedAvatarStore];
-    
-    tableViewIsUp = NO;
-    self.urlString = [NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/users/%@/posts",self.userID];
+    if (!self.userID) [self fetchUserID];
+    else
+    {
+        //PostStore *postStore;
+        
+        [super viewDidLoad];
+        
+        //postStore = [PostStore sharedAvatarStore];
+        
+        tableViewIsUp = NO;
+        self.urlString = [NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/users/%@/posts",self.userID];
 
-    self.userInfoDict    = [postStore fetchUserInfo:self.userID];
-    self.userTweetsArray = [postStore fetchTweetsByUser:self.urlString];
-    
-    [self initializeCustomTableViewCell];
-    [self setTableViewAnimation];
-    [self setLabels];
-    [self setImages];
-    
-    
-    
-   // [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
+        self.userInfoDict    = [self.postStore fetchUserInfo:self.userID];
+        self.userTweetsArray = [self.postStore fetchTweetsByUser:self.urlString];
+        
+        [self initializeCustomTableViewCell];
+        [self setTableViewAnimation];
+        [self setLabels];
+        [self setImages];
+    }
 }
 
+   // [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
+
 # pragma mark - Initial setup
+
+- (void)fetchUserID
+{
+    [self performSegueWithIdentifier:@"SegueToSignIn" sender:self];
+}
+
 
 - (void)setLabels
 {
@@ -90,12 +89,6 @@
     self.userImage = [UIImage imageWithData:[self.userInfoDict objectForKey:@"userAvatar"]];
     self.avaterImageView.image = self.userImage;
     self.backgroundImage.image = [UIImage imageWithData:[self.userInfoDict objectForKey:@"userCoverImage"]];
-}
-
-
-- (void)callSignInVC
-{
-    
 }
 
 
@@ -232,10 +225,24 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:@"SegueToSignIn"])
+    {
+        SignInViewController *svc;
+        
+        svc = segue.destinationViewController;
+        svc.delegate = self;
+    }
 }
 
 
+#pragma mark - UserSignIn delegate
+
+- (void)setUserIdFromString:(NSString *)id withPostStore:(PostStore *)store
+{
+    self.postStore = store;
+    self.userID = id;
+    [self viewDidLoad];
+}
 
 
 

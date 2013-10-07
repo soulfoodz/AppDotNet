@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserSignInDelegate.h"
 
 @interface SignInViewController : UIViewController <UITextFieldDelegate>
 
@@ -14,6 +15,7 @@
 
 - (IBAction)signInButtonPressed:(id)sender;
 
+@property (strong, nonatomic) id <UserSignInDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *boxView;
 
 @end

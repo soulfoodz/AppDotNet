@@ -95,6 +95,7 @@
 		52D7C1381802799300A27453 /* planeTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planeTab.png; sourceTree = "<group>"; };
 		52D7C13A18028F1300A27453 /* GlobalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalTableViewController.h; sourceTree = "<group>"; };
 		52D7C13B18028F1300A27453 /* GlobalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalTableViewController.m; sourceTree = "<group>"; };
+		52D7C13E1802D38D00A27453 /* UserSignInDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSignInDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +159,7 @@
 		5211681817FF79CA006D96E7 /* AppDotNet */ = {
 			isa = PBXGroup;
 			children = (
+				52D7C13E1802D38D00A27453 /* UserSignInDelegate.h */,
 				52D7C129180213F400A27453 /* TweetCell */,
 				5211682417FF79CA006D96E7 /* Main.storyboard */,
 				52D7C13A18028F1300A27453 /* GlobalTableViewController.h */,
