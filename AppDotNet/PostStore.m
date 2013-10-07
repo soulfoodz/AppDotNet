@@ -8,8 +8,27 @@
 
 #import "PostStore.h"
 #import "ProfileViewController.h"
+#import "GlobalTableViewController.h"
 
 @implementation PostStore
+
+
+
++ (PostStore *)sharedAvatarStore
+{
+    static PostStore *sharedAvatarStore = nil;
+    
+    if (!sharedAvatarStore) sharedAvatarStore = [[super allocWithZone:nil] init];
+    
+    return sharedAvatarStore;
+}
+
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return [self sharedAvatarStore];
+}
+
 
 - (id)init
 {
@@ -17,11 +36,12 @@
     
     if (self)
     {
-        self.avatarDataForUsers = [[NSMutableDictionary alloc]  init];
+        if (!self.avatarDataForUsers) self.avatarDataForUsers = [[NSMutableDictionary alloc] init];
     }
     
     return self;
 }
+
 
 
 - (NSDictionary *)fetchUserInfo:(NSString *)userID
@@ -68,7 +88,13 @@
     id following = [[userInfoDict objectForKey:@"counts"] objectForKey:@"following"];
     NSString *followersString = [NSString stringWithFormat:@"%@", followers];
     NSString *followingString = [NSString stringWithFormat:@"%@", following];
+    
+    // Set stars string
+    id stars = [[userInfoDict objectForKey:@"counts"] objectForKey:@"stars"];
+    NSString *starsString = [NSString stringWithFormat:@"%@", stars];
 
+
+    // Set description
     descriptionString = [[userInfoDict objectForKey:@"description"] objectForKey:@"text"];
 
     // Fetch the user image data
@@ -77,6 +103,8 @@
     // Fetch the users background image data
     userCoverImageData = [self fetchCoverImageForUser:userID fromDictionary:userInfoDict];
 
+    
+    
     userDataDict = @{@"userName": usernameString,
                          @"name": nameString,
                     @"followers": followersString,
@@ -84,17 +112,17 @@
               @"userDescription": descriptionString,
                    @"userAvatar": userImageData,
                @"userCoverImage": userCoverImageData,
+                        @"stars": starsString,
                      };
     
     return userDataDict;
 }
 
 
-- (NSMutableArray *)fetchTweetsByUser:(NSString *)userID
+- (NSMutableArray *)fetchTweetsByUser:(NSString *)urlString
 {
     NSLog(@"Fetch Tweets got called");
     
-    NSString       *urlString;
     NSURL          *url;
     NSURLRequest   *request;
     NSURLResponse  *response;
@@ -107,7 +135,6 @@
     
     tweetsArray = [NSMutableArray new];
     
-    urlString = [NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/users/%@/posts", userID];
     url       = [NSURL URLWithString:urlString];
     request   = [NSURLRequest requestWithURL:url];
     data      = [NSURLConnection sendSynchronousRequest:request
@@ -120,8 +147,6 @@
     
     tempArray = [tempDict objectForKey:@"data"];
     
-    NSLog(@"Data array: %@", tempArray);
-
 
     // Enumerate through the array of tweets, setting the usable values.
     for (id tweet in tempArray)
@@ -136,7 +161,7 @@
 
         tweetString     = [tweet objectForKey:@"text"];
         tweetIDString   = [tweet objectForKey:@"id"];
-        userNameString  = [NSString stringWithFormat:@"%@", [[tweet objectForKey:@"user"] objectForKey:@"username"]];
+        userNameString  = [NSString stringWithFormat:@"@%@", [[tweet objectForKey:@"user"] objectForKey:@"username"]];
         nameString      = [[tweet objectForKey:@"user"] objectForKey:@"name"];
         
         // Handle the avatarImage
@@ -144,45 +169,50 @@
        
         [self saveAvatarImageDataForUserID:userNameString fromURL:imageDataString];
         
-        NSLog(@"ImageData for userID ");
-        
+        NSData *imageData = [self fetchAvatarImageDataFromURL:imageDataString];
         // Create Dictionary out of tweet info
         
         NSDictionary *tweetDict = @{@"tweetText": tweetString,
                               @"tweetID": tweetIDString,
                              @"userName": userNameString,
                                  @"name": nameString,
-                           @"avatarData": [self.avatarDataForUsers objectForKey:userNameString],};
+                           @"avatarData": imageData,};
         
         // Add each tweet dictionary to the array
         [tweetsArray addObject:tweetDict];
     }
     
-    NSLog(@"TweetsArray : %@", tweetsArray);
     return tweetsArray;
 }
 
 
-- (NSData *)saveAvatarImageDataForUserID:(NSString *)userID fromURL:(NSString *)urlString
+- (void)saveAvatarImageDataForUserID:(NSString *)userI fromURL:(NSString *)urlString
 {
-    __block NSData *imageData;
+    //NSData *imageData;
     
+    if (self.avatarDataForUsers != 0)
+    {
     [self.avatarDataForUsers enumerateKeysAndObjectsUsingBlock:^(NSString *key, id image, BOOL *stop)
      {
-         if ([key isEqualToString:userID] && [self.avatarDataForUsers objectForKey:key] != nil)
+         if ([key isEqualToString:userI] && [self.avatarDataForUsers objectForKey:key] != nil)
          {
-             imageData = [self.avatarDataForUsers objectForKey:key];
-             YES;
+             //NSData *imageData;
+             //imageData = [self.avatarDataForUsers objectForKey:key];
+             *stop = YES;
          }
          else
          {
-             [self.avatarDataForUsers setObject:urlString forKey:userID];
-             imageData = [self.avatarDataForUsers objectForKey:key];
-             YES;
+             //NSData *imageData;
+             [self.avatarDataForUsers setObject:urlString forKey:userI];
+             //imageData = [self.avatarDataForUsers objectForKey:key];
+             *stop = YES;
          }
      }];
+     
+        [self.avatarDataForUsers setObject:urlString forKey:userI];
+    }
     
-    return imageData;
+    //return imageData;
 }
 
 
@@ -197,7 +227,24 @@
     avatarImageData = [NSData dataWithContentsOfURL:url];
     
     // Add the image data to our dictionary to save time when reloading
-    [self.avatarDataForUsers setObject:avatarImageData forKey:userID];
+    //[self.avatarDataForUsers setObject:avatarImageData forKey:userID];
+    
+    return avatarImageData;
+}
+
+
+- (NSData *)fetchAvatarImageDataFromURL:(NSString *)urlString
+{
+    //NSString *imageURLString;
+    NSData *avatarImageData;
+    NSURL *url;
+    
+    // imageURLString  = [self.avatarDataForUsers objectForKey:@"userID"];
+    url             = [NSURL URLWithString:urlString];
+    avatarImageData = [NSData dataWithContentsOfURL:url];
+    
+    // Add the image data to our dictionary to save time when reloading
+    //[self.avatarDataForUsers setObject:avatarImageData forKey:userID];
     
     return avatarImageData;
 }
@@ -211,7 +258,7 @@
     
     imageURLString      = [[dict objectForKey:@"cover_image"] objectForKey:@"url"];
     url                 = [NSURL URLWithString:imageURLString];
-    coverImageData = [NSData dataWithContentsOfURL:url];
+    coverImageData      = [NSData dataWithContentsOfURL:url];
     
     return coverImageData;
 }

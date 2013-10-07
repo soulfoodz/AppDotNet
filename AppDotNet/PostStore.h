@@ -14,18 +14,22 @@
 // UserInfoDict always stores info for the current user.
 // Same for userPostsArray
 
+
 @property (strong, nonatomic) NSMutableDictionary *avatarDataForUsers;
 @property (strong, nonatomic) NSMutableDictionary *backgroundImageDataForUsers;
 @property (strong, nonatomic) NSMutableArray      *userPostsArray;
 @property (strong, nonatomic) NSMutableArray      *allPostsArray;
 @property (strong, nonatomic) NSMutableArray      *postsArray;
 
++ (PostStore *)sharedAvatarStore;
 
 // - (void)refreshPosts;
-- (NSMutableArray *)fetchTweetsByUser:(NSString *)userID;
+- (NSMutableArray *)fetchTweetsByUser:(NSString *)urlString;
 - (NSDictionary *)fetchUserInfo:(NSString *)userID;
-- (NSData *)saveAvatarImageDataForUserID:(NSString *)userID fromURL:(NSString *)urlString;
+- (void)saveAvatarImageDataForUserID:(NSString *)userID fromURL:(NSString *)urlString;
 - (NSData *)fetchAvatarImageForUser:(NSString *)userID fromDictionary:(NSDictionary *)dict;
+- (NSData *)fetchAvatarImageForUser:(NSString *)userID;
+
 
 
 @end

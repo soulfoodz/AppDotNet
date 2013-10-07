@@ -31,6 +31,14 @@
 		529CE90218013E0700C41740 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529CE90118013E0700C41740 /* TweetCell.xib */; };
 		52D7C1251801F44400A27453 /* appdotnet-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C1241801F44400A27453 /* appdotnet-icon.jpg */; };
 		52D7C12818020EA100A27453 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D7C12718020EA100A27453 /* SignInViewController.m */; };
+		52D7C12B18026C1F00A27453 /* appdotnet-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C12A18026C1F00A27453 /* appdotnet-icon.png */; };
+		52D7C12D18026E2C00A27453 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C12C18026E2C00A27453 /* star.png */; };
+		52D7C13018026FB000A27453 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C12E18026FB000A27453 /* eye.png */; };
+		52D7C13118026FB000A27453 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C12F18026FB000A27453 /* person.png */; };
+		52D7C133180274D100A27453 /* bkgd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C132180274D100A27453 /* bkgd.png */; };
+		52D7C137180278FE00A27453 /* personTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C136180278FE00A27453 /* personTab.png */; };
+		52D7C1391802799300A27453 /* planeTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C1381802799300A27453 /* planeTab.png */; };
+		52D7C13C18028F1300A27453 /* GlobalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D7C13B18028F1300A27453 /* GlobalTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +86,15 @@
 		52D7C1241801F44400A27453 /* appdotnet-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appdotnet-icon.jpg"; sourceTree = "<group>"; };
 		52D7C12618020EA100A27453 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		52D7C12718020EA100A27453 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		52D7C12A18026C1F00A27453 /* appdotnet-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appdotnet-icon.png"; sourceTree = "<group>"; };
+		52D7C12C18026E2C00A27453 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		52D7C12E18026FB000A27453 /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye.png; sourceTree = "<group>"; };
+		52D7C12F18026FB000A27453 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
+		52D7C132180274D100A27453 /* bkgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd.png; sourceTree = "<group>"; };
+		52D7C136180278FE00A27453 /* personTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personTab.png; sourceTree = "<group>"; };
+		52D7C1381802799300A27453 /* planeTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planeTab.png; sourceTree = "<group>"; };
+		52D7C13A18028F1300A27453 /* GlobalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalTableViewController.h; sourceTree = "<group>"; };
+		52D7C13B18028F1300A27453 /* GlobalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +160,8 @@
 			children = (
 				52D7C129180213F400A27453 /* TweetCell */,
 				5211682417FF79CA006D96E7 /* Main.storyboard */,
+				52D7C13A18028F1300A27453 /* GlobalTableViewController.h */,
+				52D7C13B18028F1300A27453 /* GlobalTableViewController.m */,
 				52D7C12618020EA100A27453 /* SignInViewController.h */,
 				52D7C12718020EA100A27453 /* SignInViewController.m */,
 				529CE8FE1801324F00C41740 /* FollowTableViewController.h */,
@@ -202,6 +221,13 @@
 		5211684D17FF9DE5006D96E7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				52D7C1381802799300A27453 /* planeTab.png */,
+				52D7C136180278FE00A27453 /* personTab.png */,
+				52D7C132180274D100A27453 /* bkgd.png */,
+				52D7C12E18026FB000A27453 /* eye.png */,
+				52D7C12F18026FB000A27453 /* person.png */,
+				52D7C12C18026E2C00A27453 /* star.png */,
+				52D7C12A18026C1F00A27453 /* appdotnet-icon.png */,
 				52D7C1241801F44400A27453 /* appdotnet-icon.jpg */,
 				5211684B17FF9DDF006D96E7 /* person.png */,
 			);
@@ -295,10 +321,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5211684C17FF9DDF006D96E7 /* person.png in Resources */,
+				52D7C12B18026C1F00A27453 /* appdotnet-icon.png in Resources */,
+				52D7C133180274D100A27453 /* bkgd.png in Resources */,
 				52D7C1251801F44400A27453 /* appdotnet-icon.jpg in Resources */,
 				529CE90218013E0700C41740 /* TweetCell.xib in Resources */,
+				52D7C1391802799300A27453 /* planeTab.png in Resources */,
+				52D7C13118026FB000A27453 /* person.png in Resources */,
 				5211682B17FF79CA006D96E7 /* Images.xcassets in Resources */,
+				52D7C12D18026E2C00A27453 /* star.png in Resources */,
+				52D7C13018026FB000A27453 /* eye.png in Resources */,
 				5211681D17FF79CA006D96E7 /* InfoPlist.strings in Resources */,
+				52D7C137180278FE00A27453 /* personTab.png in Resources */,
 				5211682617FF79CA006D96E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +353,7 @@
 			files = (
 				521168591800E30E006D96E7 /* PostStore.m in Sources */,
 				529CE9001801324F00C41740 /* FollowTableViewController.m in Sources */,
+				52D7C13C18028F1300A27453 /* GlobalTableViewController.m in Sources */,
 				5211682917FF79CA006D96E7 /* ViewController.m in Sources */,
 				52D7C12818020EA100A27453 /* SignInViewController.m in Sources */,
 				5211682317FF79CA006D96E7 /* AppDelegate.m in Sources */,

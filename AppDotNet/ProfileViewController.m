@@ -8,12 +8,14 @@
 
 #import "ProfileViewController.h"
 #import "FollowTableViewController.h"
+#import "SignInViewController.h"
 #import "TweetCell.h"
 #import "PostStore.h"
 
 @interface ProfileViewController ()
 {
     BOOL tableViewIsUp;
+    BOOL isFirstRun;
     UIImage *blurredImage;
 }
 
@@ -25,46 +27,60 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    if (self)
+        {
+        }
     return self;
 }
 
 
 - (void)viewDidLoad
 {
-    PostStore *postStore;
+   if (!self.userID) self.userID = @"@mashable";
+//    {
+//        self.userID = @"@mashable";
+//        [self performSegueWithIdentifier:@"SegueToSignIn" sender:self];
+//    }
+//    else
+//    {
+       // svc = [self.storyboard instantiateViewControllerWithIdentifier:@"SVC"];
+    //
     
+    PostStore *postStore;
     
     [super viewDidLoad];
     
-    postStore = [[PostStore alloc] init];
-
+    postStore = [PostStore sharedAvatarStore];
+    
     tableViewIsUp = NO;
-    
-    if (!self.userID) self.userID = @"@mashable";
-    
+    self.urlString = [NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/users/%@/posts",self.userID];
+
     self.userInfoDict    = [postStore fetchUserInfo:self.userID];
-    self.userTweetsArray = [postStore fetchTweetsByUser:self.userID];
+    self.userTweetsArray = [postStore fetchTweetsByUser:self.urlString];
     
     [self initializeCustomTableViewCell];
     [self setTableViewAnimation];
     [self setLabels];
     [self setImages];
     
-    [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
+    
+    
+   // [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
 }
 
 # pragma mark - Initial setup
 
 - (void)setLabels
 {
+    // Buttons
+    [self.followersButton setTitle:[self.userInfoDict objectForKey:@"followers"] forState:UIControlStateNormal];
+    [self.followingButton setTitle:[self.userInfoDict objectForKey:@"following"] forState:UIControlStateNormal];
+    [self.starsButton     setTitle:[self.userInfoDict objectForKey:@"stars"]     forState:UIControlStateNormal];
+    
+    // Labels
     self.nameLabel.text       = [self.userInfoDict objectForKey:@"name"];
-    self.userNameLabel.text   = [self.userInfoDict objectForKey:@"userName"];
-    self.followersLabel.text  = [self.userInfoDict objectForKey:@"followers"];
-    self.followingLabel.text  = [self.userInfoDict objectForKey:@"following"];
     self.userDescription.text = [self.userInfoDict objectForKey:@"userDescription"];
+    self.navigationItem.title = [self.userInfoDict objectForKey:@"userName"];
 }
 
 
@@ -74,6 +90,12 @@
     self.userImage = [UIImage imageWithData:[self.userInfoDict objectForKey:@"userAvatar"]];
     self.avaterImageView.image = self.userImage;
     self.backgroundImage.image = [UIImage imageWithData:[self.userInfoDict objectForKey:@"userCoverImage"]];
+}
+
+
+- (void)callSignInVC
+{
+    
 }
 
 
@@ -184,7 +206,6 @@
 {
     // Get a UIImage From the uiview
     
-    NSLog(@"blur capture");
     UIGraphicsBeginImageContext(self.view.bounds.size);
     [self.blurContainerView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -205,10 +226,14 @@
     newView.image = blurredImage;
     
     // Insert blur UIImageView below transparent view inside the blur image container
-    [self.blurContainerView insertSubview:newView belowSubview:self.blurView];
+    [self.blurContainerView insertSubview:newView belowSubview:self.semiTransparentView];
 }
 
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+}
 
 
 

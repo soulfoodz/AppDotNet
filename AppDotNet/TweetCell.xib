@@ -38,6 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="yZ2-kR-fO8" id="AMy-u0-KRn"/>

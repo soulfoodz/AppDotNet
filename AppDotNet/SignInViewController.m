@@ -7,6 +7,7 @@
 //
 
 #import "SignInViewController.h"
+#import "ProfileViewController.h"
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -27,7 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.boxView.layer.cornerRadius = 8.0f;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,6 +38,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)signInButtonPressed:(id)sender {
+- (IBAction)signInButtonPressed:(id)sender
+{
+    [self.textField resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    ProfileViewController *pvc;
+//    pvc = segue.destinationViewController;
+//    pvc.userID = self.textField.text;
+//}
+
+
+
+
+
+
+
+
+
 @end

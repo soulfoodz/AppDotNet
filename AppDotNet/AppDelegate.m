@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SignInViewController.h"
 
 @implementation AppDelegate
 
