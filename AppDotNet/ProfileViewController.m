@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "FollowTableViewController.h"
 #import "TweetCell.h"
+#import "PostStore.h"
 
 @interface ProfileViewController ()
 {
@@ -20,6 +21,7 @@
 
 @implementation ProfileViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,6 +31,199 @@
     return self;
 }
 
+
+- (void)viewDidLoad
+{
+    PostStore *postStore;
+    
+    
+    [super viewDidLoad];
+    
+    postStore = [[PostStore alloc] init];
+
+    tableViewIsUp = NO;
+    
+    if (!self.userID) self.userID = @"@mashable";
+    
+    self.userInfoDict    = [postStore fetchUserInfo:self.userID];
+    self.userTweetsArray = [postStore fetchTweetsByUser:self.userID];
+    
+    [self initializeCustomTableViewCell];
+    [self setTableViewAnimation];
+    [self setLabels];
+    [self setImages];
+    
+    [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
+}
+
+# pragma mark - Initial setup
+
+- (void)setLabels
+{
+    self.nameLabel.text       = [self.userInfoDict objectForKey:@"name"];
+    self.userNameLabel.text   = [self.userInfoDict objectForKey:@"userName"];
+    self.followersLabel.text  = [self.userInfoDict objectForKey:@"followers"];
+    self.followingLabel.text  = [self.userInfoDict objectForKey:@"following"];
+    self.userDescription.text = [self.userInfoDict objectForKey:@"userDescription"];
+}
+
+
+- (void)setImages
+{
+    
+    self.userImage = [UIImage imageWithData:[self.userInfoDict objectForKey:@"userAvatar"]];
+    self.avaterImageView.image = self.userImage;
+    self.backgroundImage.image = [UIImage imageWithData:[self.userInfoDict objectForKey:@"userCoverImage"]];
+}
+
+
+#pragma mark - TableView DataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.userTweetsArray.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TweetCell *cell;
+    NSString  *userNameString;
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
+    
+    //[self findTheTweetsTime:indexPath];
+    
+    userNameString = [NSString stringWithFormat:@"@%@", [self.userInfoDict objectForKey:@"userName"]];
+    
+    cell.nameLabel.text        = [self.userInfoDict objectForKey:@"name"];
+    cell.userNameLabel.text    = [self.userInfoDict objectForKey:@"userName"];
+    cell.tweetLabel.text       = [self.userTweetsArray[indexPath.row] objectForKey:@"tweetText"];
+    cell.avatarImageView.image = self.userImage;
+    
+    return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25.0;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Recent Posts";
+}
+
+
+- (void)initializeCustomTableViewCell
+{
+    UINib *nib;
+
+    nib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
+    
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"customCell"];
+}
+
+
+#pragma mark - TableView Animation
+
+
+
+- (void)setTableViewAnimation
+{
+    self.tapUp   = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    [self.tableView addGestureRecognizer:self.tapUp];
+}
+
+
+- (void)handleTap
+{
+    if (!tableViewIsUp)
+    {
+        NSLog(@"You tapped!!");
+        
+        [UIView animateWithDuration:0.3f
+                              delay:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^()
+         {
+             CGRect scrollFrame = CGRectMake(0.0f, 258.0f, 320.0f, 310.0f);
+             self.tableView.frame = scrollFrame;
+             self.tableView.scrollEnabled = YES;
+             self.tableView.userInteractionEnabled = YES;
+             tableViewIsUp = YES;
+         }
+                         completion:nil];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3f
+                              delay:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^()
+         {
+             CGRect scrollFrame = CGRectMake(0.0f, 468.0f, 320.0f, 100.0f);
+             self.tableView.frame = scrollFrame;
+             self.tableView.scrollEnabled = NO;
+             self.tableView.userInteractionEnabled = YES;
+             tableViewIsUp = NO;
+             
+         }
+                         completion:nil];
+        
+    }
+}
+
+
+# pragma mark - Cover image blur effect
+
+- (void)captureBlur
+{
+    // Get a UIImage From the uiview
+    
+    NSLog(@"blur capture");
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.blurContainerView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // Blur the UIImage
+    CIImage *imageToBlur = [CIImage imageWithCGImage:viewImage.CGImage];
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [gaussianBlurFilter setValue:imageToBlur forKey:@"inputImage"];
+    [gaussianBlurFilter setValue:[NSNumber numberWithFloat:0.0f] forKey:@"inputRadius"];
+    CIImage *resultImage = [gaussianBlurFilter valueForKey:@"outputImage"];
+    
+    //Create UIImage from filtered image
+    blurredImage = [[UIImage alloc] initWithCIImage:resultImage];
+    
+    //Place the UIImage in a UIImageView
+    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    newView.image = blurredImage;
+    
+    // Insert blur UIImageView below transparent view inside the blur image container
+    [self.blurContainerView insertSubview:newView belowSubview:self.blurView];
+}
+
+
+
+
+
+
+
+/*
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,9 +242,8 @@
     
     nib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     
-    [[self tableView] registerNib:nib
-           forCellReuseIdentifier:@"tweetCell"];
-
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"customCell"];
     
     [self performSelectorInBackground:@selector(captureBlur) withObject:nil];
     
@@ -64,7 +258,6 @@
     
     // Begin call to url
     urlString = [NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/users/%@", self.userID];
-       
     url       = [NSURL URLWithString:urlString];
     request   = [NSURLRequest requestWithURL:url];
     
@@ -72,9 +265,9 @@
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         NSString *description;
-         NSString *usernameString;
-         NSDictionary *tempDict;
+         NSString       *description;
+         NSString       *usernameString;
+         NSDictionary   *tempDict;
          
          
          tempDict = [NSJSONSerialization JSONObjectWithData:data
@@ -218,14 +411,40 @@
          
          self.userTweetsArray = [tempDict objectForKey:@"data"];
          
-        // NSLog(@"Tweets: %@", self.userTweetsArray);
-         
          [self.tableView reloadData];
          
          NSLog(@"GOT tweets");
       }];
     
     NSLog(@"Getting tweets");
+}
+
+
+
+#pragma mark - Date Formatting
+
+- (void)findTheTweetsTime:(NSIndexPath *)indexPath
+{
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter;
+    
+    dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    
+    
+    NSString *createdAt = [self.userTweetsArray[indexPath.row] objectForKey:@"created_at"];
+    NSString *newCreatedAt = [createdAt stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    NSString *thirdCreatedAt = [newCreatedAt stringByReplacingOccurrencesOfString:@"Z" withString:@""];
+    
+    NSLog(@"%@", thirdCreatedAt);
+    
+    NSDate *date = [dateFormatter dateFromString:thirdCreatedAt];
+    
+    
+    NSLog(@"new date : %@", date);
+    
+    
 }
 
 
@@ -242,7 +461,9 @@
     TweetCell *cell;
     NSString  *userNameString;
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
+    
+    [self findTheTweetsTime:indexPath];
     
     userNameString = [NSString stringWithFormat:@"@%@", [self.userInfoDict objectForKey:@"username"]];
     
@@ -324,6 +545,6 @@
 }
 
  
-
+*/
 
 @end

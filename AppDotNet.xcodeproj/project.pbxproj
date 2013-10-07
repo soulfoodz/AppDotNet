@@ -21,17 +21,16 @@
 		5211683417FF79CA006D96E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5211681617FF79CA006D96E7 /* UIKit.framework */; };
 		5211683C17FF79CA006D96E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5211683A17FF79CA006D96E7 /* InfoPlist.strings */; };
 		5211683E17FF79CA006D96E7 /* AppDotNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211683D17FF79CA006D96E7 /* AppDotNetTests.m */; };
-		5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */; };
 		5211684C17FF9DDF006D96E7 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 5211684B17FF9DDF006D96E7 /* person.png */; };
 		5211685318009FDA006D96E7 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211685218009FDA006D96E7 /* TweetCell.m */; };
 		521168561800E282006D96E7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521168551800E282006D96E7 /* ProfileViewController.m */; };
 		521168591800E30E006D96E7 /* PostStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 521168581800E30E006D96E7 /* PostStore.m */; };
-		5211685F1800EA02006D96E7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211685E1800EA02006D96E7 /* User.m */; };
 		521168611801142D006D96E7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521168601801142D006D96E7 /* CoreImage.framework */; };
 		5211686318011435006D96E7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5211686218011435006D96E7 /* QuartzCore.framework */; };
-		5211686618011499006D96E7 /* BlurOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211686518011499006D96E7 /* BlurOverlay.m */; };
 		529CE9001801324F00C41740 /* FollowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE8FF1801324F00C41740 /* FollowTableViewController.m */; };
 		529CE90218013E0700C41740 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529CE90118013E0700C41740 /* TweetCell.xib */; };
+		52D7C1251801F44400A27453 /* appdotnet-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C1241801F44400A27453 /* appdotnet-icon.jpg */; };
+		52D7C12818020EA100A27453 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D7C12718020EA100A27453 /* SignInViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +63,6 @@
 		5211683917FF79CA006D96E7 /* AppDotNetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppDotNetTests-Info.plist"; sourceTree = "<group>"; };
 		5211683B17FF79CA006D96E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5211683D17FF79CA006D96E7 /* AppDotNetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDotNetTests.m; sourceTree = "<group>"; };
-		5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUserPostsViewController.h; sourceTree = "<group>"; };
-		5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUserPostsViewController.m; sourceTree = "<group>"; };
 		5211684B17FF9DDF006D96E7 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		5211685118009FDA006D96E7 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		5211685218009FDA006D96E7 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
@@ -73,15 +70,14 @@
 		521168551800E282006D96E7 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		521168571800E30E006D96E7 /* PostStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostStore.h; sourceTree = "<group>"; };
 		521168581800E30E006D96E7 /* PostStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostStore.m; sourceTree = "<group>"; };
-		5211685D1800EA02006D96E7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		5211685E1800EA02006D96E7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		521168601801142D006D96E7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		5211686218011435006D96E7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		5211686418011499006D96E7 /* BlurOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurOverlay.h; sourceTree = "<group>"; };
-		5211686518011499006D96E7 /* BlurOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurOverlay.m; sourceTree = "<group>"; };
 		529CE8FE1801324F00C41740 /* FollowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowTableViewController.h; sourceTree = "<group>"; };
 		529CE8FF1801324F00C41740 /* FollowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowTableViewController.m; sourceTree = "<group>"; };
 		529CE90118013E0700C41740 /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
+		52D7C1241801F44400A27453 /* appdotnet-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appdotnet-icon.jpg"; sourceTree = "<group>"; };
+		52D7C12618020EA100A27453 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		52D7C12718020EA100A27453 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,22 +141,16 @@
 		5211681817FF79CA006D96E7 /* AppDotNet */ = {
 			isa = PBXGroup;
 			children = (
-				5211685118009FDA006D96E7 /* TweetCell.h */,
-				5211685218009FDA006D96E7 /* TweetCell.m */,
-				529CE90118013E0700C41740 /* TweetCell.xib */,
+				52D7C129180213F400A27453 /* TweetCell */,
 				5211682417FF79CA006D96E7 /* Main.storyboard */,
+				52D7C12618020EA100A27453 /* SignInViewController.h */,
+				52D7C12718020EA100A27453 /* SignInViewController.m */,
 				529CE8FE1801324F00C41740 /* FollowTableViewController.h */,
 				529CE8FF1801324F00C41740 /* FollowTableViewController.m */,
 				521168571800E30E006D96E7 /* PostStore.h */,
 				521168581800E30E006D96E7 /* PostStore.m */,
-				5211685D1800EA02006D96E7 /* User.h */,
-				5211685E1800EA02006D96E7 /* User.m */,
-				5211686418011499006D96E7 /* BlurOverlay.h */,
-				5211686518011499006D96E7 /* BlurOverlay.m */,
 				521168541800E282006D96E7 /* ProfileViewController.h */,
 				521168551800E282006D96E7 /* ProfileViewController.m */,
-				5211684717FF8E1E006D96E7 /* RecentUserPostsViewController.h */,
-				5211684817FF8E1E006D96E7 /* RecentUserPostsViewController.m */,
 				5211682717FF79CA006D96E7 /* ViewController.h */,
 				5211682817FF79CA006D96E7 /* ViewController.m */,
 				5211682A17FF79CA006D96E7 /* Images.xcassets */,
@@ -212,9 +202,20 @@
 		5211684D17FF9DE5006D96E7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				52D7C1241801F44400A27453 /* appdotnet-icon.jpg */,
 				5211684B17FF9DDF006D96E7 /* person.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		52D7C129180213F400A27453 /* TweetCell */ = {
+			isa = PBXGroup;
+			children = (
+				5211685118009FDA006D96E7 /* TweetCell.h */,
+				5211685218009FDA006D96E7 /* TweetCell.m */,
+				529CE90118013E0700C41740 /* TweetCell.xib */,
+			);
+			name = TweetCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5211684C17FF9DDF006D96E7 /* person.png in Resources */,
+				52D7C1251801F44400A27453 /* appdotnet-icon.jpg in Resources */,
 				529CE90218013E0700C41740 /* TweetCell.xib in Resources */,
 				5211682B17FF79CA006D96E7 /* Images.xcassets in Resources */,
 				5211681D17FF79CA006D96E7 /* InfoPlist.strings in Resources */,
@@ -316,13 +318,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5211685F1800EA02006D96E7 /* User.m in Sources */,
 				521168591800E30E006D96E7 /* PostStore.m in Sources */,
 				529CE9001801324F00C41740 /* FollowTableViewController.m in Sources */,
 				5211682917FF79CA006D96E7 /* ViewController.m in Sources */,
+				52D7C12818020EA100A27453 /* SignInViewController.m in Sources */,
 				5211682317FF79CA006D96E7 /* AppDelegate.m in Sources */,
-				5211684917FF8E1E006D96E7 /* RecentUserPostsViewController.m in Sources */,
-				5211686618011499006D96E7 /* BlurOverlay.m in Sources */,
 				5211685318009FDA006D96E7 /* TweetCell.m in Sources */,
 				521168561800E282006D96E7 /* ProfileViewController.m in Sources */,
 				5211681F17FF79CA006D96E7 /* main.m in Sources */,

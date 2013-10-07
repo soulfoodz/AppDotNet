@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TweetCell.h"
 
+@class PostStore;
+
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -16,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *userArray;
 @property (strong, nonatomic) NSMutableArray *allPostsArray;
 @property (strong, nonatomic) NSMutableArray *postsArray;
+@property (strong, nonatomic) PostStore      *postStore;
 
 - (IBAction)refreshFeed:(id)sender;
 

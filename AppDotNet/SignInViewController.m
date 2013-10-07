@@ -1,18 +1,19 @@
 //
-//  RecentUserPostsViewController.m
+//  SignInViewController.m
 //  AppDotNet
 //
-//  Created by MacBook Pro on 10/4/13.
+//  Created by MacBook Pro on 10/6/13.
 //  Copyright (c) 2013 MacBook Pro. All rights reserved.
 //
 
-#import "RecentUserPostsViewController.h"
+#import "SignInViewController.h"
 
-@interface RecentUserPostsViewController ()
+@interface SignInViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
-@implementation RecentUserPostsViewController
+@implementation SignInViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,4 +36,6 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)signInButtonPressed:(id)sender {
+}
 @end

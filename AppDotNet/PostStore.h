@@ -10,15 +10,22 @@
 
 @interface PostStore : NSObject
 
-@property (strong, nonatomic) NSMutableArray *userArray;
-@property (strong, nonatomic) NSMutableArray *allPostsArray;
-@property (strong, nonatomic) NSMutableArray *postsArray;
-@property (strong, nonatomic) NSString *username;
 
-- (void)refreshFeed:(id)sender;
-//- (NSDictionary *)pullUserInfo:(NSString *)string;
-//- (NSMutableArray *)pullRecentPostsByUser:(NSString *)user;
+// UserInfoDict always stores info for the current user.
+// Same for userPostsArray
 
+@property (strong, nonatomic) NSMutableDictionary *avatarDataForUsers;
+@property (strong, nonatomic) NSMutableDictionary *backgroundImageDataForUsers;
+@property (strong, nonatomic) NSMutableArray      *userPostsArray;
+@property (strong, nonatomic) NSMutableArray      *allPostsArray;
+@property (strong, nonatomic) NSMutableArray      *postsArray;
+
+
+// - (void)refreshPosts;
+- (NSMutableArray *)fetchTweetsByUser:(NSString *)userID;
+- (NSDictionary *)fetchUserInfo:(NSString *)userID;
+- (NSData *)saveAvatarImageDataForUserID:(NSString *)userID fromURL:(NSString *)urlString;
+- (NSData *)fetchAvatarImageForUser:(NSString *)userID fromDictionary:(NSDictionary *)dict;
 
 
 @end
